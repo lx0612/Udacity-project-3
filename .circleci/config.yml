@@ -41,7 +41,7 @@ commands:
               exit 0
             fi
 
-            cd $(eval echo "$CIRCLE_WORKING_DIRECTORY/$PROJECT_ROOT_DIR/backend")
+            cd $(eval echo "$CIRCLE_WORKING_DIRECTORY/backend")
             # Install dependencies
             npm install
             # Revert migration on fail
@@ -317,6 +317,7 @@ jobs:
       # Rollback if fail
       - destroy-environment:
           stack_name: Udapeople-Frontend-$CUR_SHORT_HASH
+          stack_name: Udapeople-Backend-$CUR_SHORT_HASH
 
   deploy-backend-infrastructure:
     executor: aws-cli/default
@@ -361,6 +362,7 @@ jobs:
             - "backendpublicdns"
       # Rollback if fail
       - destroy-environment:
+          stack_name: Udapeople-Frontend-$CUR_SHORT_HASH    
           stack_name: Udapeople-Backend-$CUR_SHORT_HASH    
 
   configure-infrastructure: 
@@ -451,7 +453,7 @@ jobs:
       - run:
           name: Deploy frontend objects
           command: |
-            cd $(eval echo "$CIRCLE_WORKING_DIRECTORY/$PROJECT_ROOT_DIR/frontend")
+            cd $(eval echo "$CIRCLE_WORKING_DIRECTORY/frontend")
             # Create .env file
             touch .env
             # Get backend URL
