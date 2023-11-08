@@ -150,11 +150,11 @@ jobs:
           command: |
             pwd
             ls
-            cd $(eval echo "$CIRCLE_WORKING_DIRECTORY/$PROJECT_ROOT_DIR/frontend")
+            cd $(eval echo "$CIRCLE_WORKING_DIRECTORY/frontend")
             npm install
             npm run build
       - save_cache:
-          paths: [/home/circleci/project/c3-build-cicd-pipeline/frontend/node_modules]
+          paths: [/home/circleci/project/frontend/node_modules]
           key: frontend-build
 
   build-backend:
