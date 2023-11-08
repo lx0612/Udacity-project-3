@@ -216,7 +216,7 @@ jobs:
       - run:
           name: Test frontend
           command: |
-            cd $(eval echo "$CIRCLE_WORKING_DIRECTORY/$PROJECT_ROOT_DIR/frontend")
+            cd $(eval echo "$CIRCLE_WORKING_DIRECTORY/frontend")
             npm install
             npm run test
                 
@@ -233,7 +233,7 @@ jobs:
       - run:
           name: Test backend
           command: |
-            cd $(eval echo "$CIRCLE_WORKING_DIRECTORY/$PROJECT_ROOT_DIR/backend")
+            cd $(eval echo "$CIRCLE_WORKING_DIRECTORY/backend")
             npm install
             npm run test
             
@@ -251,7 +251,7 @@ jobs:
       - run:
           name: Scan frontend dependencies
           command: |
-            cd $(eval echo "$CIRCLE_WORKING_DIRECTORY/$PROJECT_ROOT_DIR/frontend")
+            cd $(eval echo "$CIRCLE_WORKING_DIRECTORY/frontend")
             npm install
             ## npm install oauth-sign@^0.9.0
             npm audit fix --audit-level=critical --force
@@ -273,7 +273,7 @@ jobs:
       - run:
           name: Scan backend dependencies
           command: |
-            cd $(eval echo "$CIRCLE_WORKING_DIRECTORY/$PROJECT_ROOT_DIR/backend")
+            cd $(eval echo "$CIRCLE_WORKING_DIRECTORY/backend")
             npm install
             ## npm install oauth-sign@^0.9.0
             npm audit fix --audit-level=critical --force
