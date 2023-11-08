@@ -344,10 +344,11 @@ jobs:
             host=$(aws cloudformation list-exports \
             --query "Exports[?Name==\`$backend_public_dns\`].Value" \
             --no-paginate --output text)
+            echo $host
             # Append the DNS to the inventory file
             echo $host >> $(eval echo "$CIRCLE_WORKING_DIRECTORY/.circleci/ansible/inventory.txt")
             # Move to workspace
-            mv $(eval echo "$CIRCLE_WORKING_DIRECTORY/.circleci/ansible/inventory.txt $WORKSPACE_DIR/inventory.txt")
+            cp $(eval echo "$CIRCLE_WORKING_DIRECTORY/.circleci/ansible/inventory.txt $WORKSPACE_DIR/inventory.txt")
             # Setup API_URL for frontend to use
             API_URL="http://${host}:3030"
             echo "${API_URL}"
