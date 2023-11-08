@@ -106,6 +106,7 @@
     "redux-thunk": "^2.3.0",
     "sweetalert2": "^8.13.4"
   },
+
   "jest": {
     "rootDir": "src",
     "coverageDirectory": "../coverage",
@@ -140,7 +141,8 @@
       "^app/(.*)$": "<rootDir>/app/$1",
       "\\.(css|less)$": "identity-obj-proxy",
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js"
-    }
+    },
+    "setupFilesAfterEnv": ["<rootDir>/setupTests.ts"]
   },
   "homepage": "http://mywebsite.com/relativepath"
 }
