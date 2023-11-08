@@ -374,7 +374,7 @@ jobs:
       # Set up AWS Credentials
       - aws-cli/setup
       - add_ssh_keys:
-          fingerprints: ["61:22:79:6b:8b:79:4e:87:e1:ae:71:57:02:9d:1a:f2"]
+          fingerprints: ["20:7b:ca:49:ac:d0:71:41:8e:9e:42:3a:a0:fc:79:7c:4b:9d:98:3a"]
       - python/install-packages:
           args: ansible
       - attach_workspace:
