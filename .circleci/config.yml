@@ -316,7 +316,6 @@ jobs:
             - websiteurl
       # Rollback if fail
       - destroy-environment:
-          stack_name: Udapeople-Frontend-$CUR_SHORT_HASH
           stack_name: Udapeople-Backend-$CUR_SHORT_HASH
 
   deploy-backend-infrastructure:
@@ -362,7 +361,6 @@ jobs:
             - "backendpublicdns"
       # Rollback if fail
       - destroy-environment:
-          stack_name: Udapeople-Frontend-$CUR_SHORT_HASH    
           stack_name: Udapeople-Backend-$CUR_SHORT_HASH    
 
   configure-infrastructure: 
