@@ -331,7 +331,7 @@ jobs:
       - deploy-stack:
           stack_name: Udapeople-Backend-$CUR_SHORT_HASH
           template_file: $CIRCLE_WORKING_DIRECTORY/$TEMPLATE_ROOT_DIR/backend.yml
-          parameter_overrides: file://$CIRCLE_WORKING_DIRECTORY/$TEMPLATE_ROOT_DIR/backend-parameters.json
+          parameter_overrides: file://$CIRCLE_WORKING_DIRECTORY/$TEMPLATE_ROOT_DIR/BE-params.json
       - run:
           name: "Get backend URL"
           command: |
