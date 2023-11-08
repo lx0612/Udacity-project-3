@@ -403,7 +403,7 @@ jobs:
       - run:
           name: Run migrations
           command: |
-            cd $(eval echo "$CIRCLE_WORKING_DIRECTORY/$PROJECT_ROOT_DIR/backend")
+            cd $(eval echo "$CIRCLE_WORKING_DIRECTORY/backend")
             # Install dependencies
             npm install
             # Run and save the migration output
@@ -413,7 +413,7 @@ jobs:
       - run:
           name: Send migration status to kvdb.io
           command: |
-            cd $(eval echo "$CIRCLE_WORKING_DIRECTORY/$PROJECT_ROOT_DIR/backend")
+            cd $(eval echo "$CIRCLE_WORKING_DIRECTORY/backend")
 
             if cat migrations_dump.txt | grep "has been executed successfully."
             then
