@@ -170,7 +170,7 @@ jobs:
       - run: 
           name: Save all db varibles in env file 
           command: |
-            cd $(eval echo "$CIRCLE_WORKING_DIRECTORY/$PROJECT_ROOT_DIR/backend")
+            cd $(eval echo "$CIRCLE_WORKING_DIRECTORY/backend")
             touch .env
             echo NODE_ENV=production >> .env
             echo TYPEORM_HOST=$TYPEORM_HOST >> .env
@@ -185,7 +185,7 @@ jobs:
       - run:
           name: Back-end build
           command: |
-            cd $(eval echo "$CIRCLE_WORKING_DIRECTORY/$PROJECT_ROOT_DIR/backend")
+            cd $(eval echo "$CIRCLE_WORKING_DIRECTORY/backend")
             npm install
             npm run build
             cd ..
