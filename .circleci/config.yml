@@ -1,7 +1,7 @@
 version: 2.1
 # Use a package of configuration called an orb.
 orbs:
-  aws-cli: circleci/aws-cli@2.0.3
+  aws-cli: circleci/aws-cli@2.1.0
   python: circleci/python@2.1.1
 commands:
   # Reusable Job Code
@@ -18,7 +18,7 @@ commands:
           name: "Export environment variable"
           command: |
             echo 'export WORKSPACE_DIR="/home/circleci/workspace"' >> "$BASH_ENV"
-            echo 'export PROJECT_ROOT_DIR="c3-build-cicd-pipeline"' >> "$BASH_ENV"
+            echo 'export PROJECT_ROOT_DIR="Udacity-project-3"' >> "$BASH_ENV"
             echo 'export TEMPLATE_ROOT_DIR=".circleci/files"' >> "$BASH_ENV"
             echo 'export PROJECT_TAG="udacity-cicd-project"' >> "$BASH_ENV"
 
@@ -198,7 +198,7 @@ jobs:
           paths:
             - "artifact-backend.tar.gz"
       - save_cache:
-          paths: [/home/circleci/project/c3-build-cicd-pipeline/backend/node_modules]
+          paths: [/home/circleci/project/Udacity-project-3/backend/node_modules]
           key: backend-build
 
   test-frontend:
