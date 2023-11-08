@@ -148,6 +148,7 @@ jobs:
       - run:
           name: Build front-end
           command: |
+            pwd
             cd $(eval echo "$CIRCLE_WORKING_DIRECTORY/$PROJECT_ROOT_DIR/frontend")
             npm install
             npm run build
