@@ -503,6 +503,9 @@ jobs:
           name: "Ansible play book for deploy backend"
           command: |
             ansible-playbook -i $WORKSPACE_DIR/inventory.txt $(eval echo "$CIRCLE_WORKING_DIRECTORY/.circleci/ansible/deploy-backend.yml")
+            cat $WORKSPACE_DIR/inventory.txt
+            pwd
+            cat $CIRCLE_WORKING_DIRECTORY
       # Rollback if fail
       - revert-migrations:
           migrations-key: migration_$CUR_SHORT_HASH
