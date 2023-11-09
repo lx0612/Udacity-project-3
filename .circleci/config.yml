@@ -560,13 +560,13 @@ jobs:
               exit 1
             fi
       # Rollback if fail
-      - revert-migrations:
-          migrations-key: migration_$CUR_SHORT_HASH
-      - destroy-environment:
-          stack_name: Udapeople-Frontend-$CUR_SHORT_HASH
-          bucket_name: udapeople-frontend-$CUR_SHORT_HASH
-      - destroy-environment:
-          stack_name: Udapeople-Backend-$CUR_SHORT_HASH 
+      # - revert-migrations:
+      #     migrations-key: migration_$CUR_SHORT_HASH
+      # - destroy-environment:
+      #     stack_name: Udapeople-Frontend-$CUR_SHORT_HASH
+      #     bucket_name: udapeople-frontend-$CUR_SHORT_HASH
+      # - destroy-environment:
+      #     stack_name: Udapeople-Backend-$CUR_SHORT_HASH 
 
   promote-to-production:
     executor: aws-cli/default
@@ -584,13 +584,13 @@ jobs:
           template_file: $CIRCLE_WORKING_DIRECTORY/$TEMPLATE_ROOT_DIR/cloudfront.yml
           parameter_overrides: S3StaticHostUrl="udapeople-frontend-$CUR_SHORT_HASH.s3.amazonaws.com"
       # Rollback if fail
-      - revert-migrations:
-          migrations-key: migration_$CUR_SHORT_HASH
-      - destroy-environment:
-          stack_name: Udapeople-Frontend-$CUR_SHORT_HASH
-          bucket_name: udapeople-frontend-$CUR_SHORT_HASH
-      - destroy-environment:
-          stack_name: Udapeople-Backend-$CUR_SHORT_HASH 
+      # - revert-migrations:
+      #     migrations-key: migration_$CUR_SHORT_HASH
+      # - destroy-environment:
+      #     stack_name: Udapeople-Frontend-$CUR_SHORT_HASH
+      #     bucket_name: udapeople-frontend-$CUR_SHORT_HASH
+      # - destroy-environment:
+      #     stack_name: Udapeople-Backend-$CUR_SHORT_HASH 
 
   clean-up:
     executor: aws-cli/default
