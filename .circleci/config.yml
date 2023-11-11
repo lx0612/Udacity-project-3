@@ -533,9 +533,10 @@ jobs:
             echo ${URL}
             if echo $test_result | grep "Welcome" > /dev/null
             then
-              return 1
+              echo "FE success"
+              exit 0
             else
-              return 1
+              exit 1
             fi
       - run:
           name: "Backend smoke test"
