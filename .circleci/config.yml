@@ -523,7 +523,7 @@ jobs:
       - export-env
       # Set up AWS Credentials
       - aws-cli/setup
-      - attach_workspace:â
+      - attach_workspace:
           at: /home/circleci/workspace
       - run:
           name: Frontend smoke test.
