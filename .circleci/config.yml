@@ -505,14 +505,14 @@ jobs:
             ansible-playbook -i $WORKSPACE_DIR/inventory.txt $(eval echo "$CIRCLE_WORKING_DIRECTORY/.circleci/ansible/deploy-backend.yml")
             cat $WORKSPACE_DIR/inventory.txt
             pwd
-      # Rollback if fail
-      # - revert-migrations:
-      #     migrations-key: migration_$CUR_SHORT_HASH
-      # - destroy-environment:
-      #     stack_name: Udapeople-Frontend-$CUR_SHORT_HASH
-      #     bucket_name: udapeople-frontend-$CUR_SHORT_HASH
-      # - destroy-environment:
-      #     stack_name: Udapeople-Backend-$CUR_SHORT_HASH
+      #Rollback if fail
+      - revert-migrations:
+          migrations-key: migration_$CUR_SHORT_HASH
+      - destroy-environment:
+          stack_name: Udapeople-Frontend-$CUR_SHORT_HASH
+          bucket_name: udapeople-frontend-$CUR_SHORT_HASH
+      - destroy-environment:
+          stack_name: Udapeople-Backend-$CUR_SHORT_HASH
 
   smoke-test:
     executor: aws-cli/default
@@ -531,11 +531,14 @@ jobs:
             static_host=$(cat $WORKSPACE_DIR/websiteurl)
             URL="http://$static_host/#/employees"
             echo ${URL}
+            test_result=$(curl -s "$URL")
             if echo $test_result | grep "Welcome" > /dev/null
             then
-              #Change this to 0 after the job fails
-              return 1
+              echo "Frontend test passed"
+              echo $test_result
+              exit 0
             else
+              echo $test_result
               exit 1
             fi
       - run:
@@ -559,13 +562,13 @@ jobs:
               exit 1
             fi
       # Rollback if fail
-      # - revert-migrations:
-      #     migrations-key: migration_$CUR_SHORT_HASH
-      # - destroy-environment:
-      #     stack_name: Udapeople-Frontend-$CUR_SHORT_HASH
-      #     bucket_name: udapeople-frontend-$CUR_SHORT_HASH
-      # - destroy-environment:
-      #     stack_name: Udapeople-Backend-$CUR_SHORT_HASH 
+      - revert-migrations:
+          migrations-key: migration_$CUR_SHORT_HASH
+      - destroy-environment:
+          stack_name: Udapeople-Frontend-$CUR_SHORT_HASH
+          bucket_name: udapeople-frontend-$CUR_SHORT_HASH
+      - destroy-environment:
+          stack_name: Udapeople-Backend-$CUR_SHORT_HASH 
 
   promote-to-production:
     executor: aws-cli/default
@@ -582,7 +585,7 @@ jobs:
           stack_name: Udapeople-Cloudfront-$CUR_SHORT_HASH
           template_file: $CIRCLE_WORKING_DIRECTORY/$TEMPLATE_ROOT_DIR/cloudfront.yml
           parameter_overrides: S3StaticHostUrl="udapeople-frontend-$CUR_SHORT_HASH.s3.amazonaws.com"
-      #Rollback if fail
+      # Rollback if fail
       - revert-migrations:
           migrations-key: migration_$CUR_SHORT_HASH
       - destroy-environment:
