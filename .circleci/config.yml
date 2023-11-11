@@ -582,7 +582,7 @@ jobs:
           stack_name: Udapeople-Cloudfront-$CUR_SHORT_HASH
           template_file: $CIRCLE_WORKING_DIRECTORY/$TEMPLATE_ROOT_DIR/cloudfront.yml
           parameter_overrides: S3StaticHostUrl="udapeople-frontend-$CUR_SHORT_HASH.s3.amazonaws.com"
-      Rollback if fail
+      #Rollback if fail
       - revert-migrations:
           migrations-key: migration_$CUR_SHORT_HASH
       - destroy-environment:
