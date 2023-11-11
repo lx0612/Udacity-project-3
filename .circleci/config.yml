@@ -534,7 +534,7 @@ jobs:
             test_result=$(curl -s "$URL")
             if echo $test_result | grep "Welcome" > /dev/null
             then
-              echo "Frontend test passed"
+              echo "FE passed"
               echo $test_result
               exit 0
             else
