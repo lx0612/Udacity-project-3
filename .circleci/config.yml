@@ -523,7 +523,7 @@ jobs:
       - export-env
       # Set up AWS Credentials
       - aws-cli/setup
-      - attach_workspace:
+      - attach_workspace:â
           at: /home/circleci/workspace
       - run:
           name: Frontend smoke test.
@@ -531,14 +531,11 @@ jobs:
             static_host=$(cat $WORKSPACE_DIR/websiteurl)
             URL="http://$static_host/#/employees"
             echo ${URL}
-            test_result=$(curl -s "$URL")
             if echo $test_result | grep "Welcome" > /dev/null
             then
-              echo "Frontend test passed"
-              echo $test_result
-              exit 0
+              #Change this to 0 after the job fails
+              return 1
             else
-              echo $test_result
               exit 1
             fi
       - run:
